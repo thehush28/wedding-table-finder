@@ -1,74 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Table Finder</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-background:#f7f3ef;
-text-align:center;
-padding:40px;
-}
-.container {
-max-width:500px;
-margin:auto;
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-input {
-width:80%;
-padding:15px;
-font-size:18px;
-margin-top:20px;
-}
-button {
-padding:15px 25px;
-font-size:18px;
-margin-top:15px;
-cursor:pointer;
-}
-#result {
-margin-top:30px;
-font-size:28px;
-font-weight:bold;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Catherine & EJ Wedding</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f5f2;
+      text-align: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 90%;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 22px;
+    }
+
+  </style>
 </head>
+
 <body>
-<div class="container">
-<h1>Catherine & Ejunubu Wedding</h1>
-<p>Type your name to find your table</p>
 
-<input type="text" id="search" placeholder="Enter your name">
-<br>
-<button onclick="findTable()">Find Table</button>
+  <img src="logo.png"
+       style="
+         width:120px;
+         margin-bottom:20px;
+       ">
 
-<div id="result"></div>
-</div>
+  <div class="container">
 
-<script>
-const guests = [{"name": "Ejunubu Ovonlen", "table": "Top Table"}, {"name": "Catherine King", "table": "Top Table"}, {"name": "Adelaide King", "table": "Top Table"}, {"name": "Regina Amadasun", "table": "Top Table"}, {"name": "Lee Ovonlen", "table": "Top Table"}, {"name": "In memory of Michael King", "table": "Top Table"}, {"name": "Merilyn York", "table": "High O"}, {"name": "Adrian York", "table": "High O"}, {"name": "London York", "table": "High O"}, {"name": "Vienna York", "table": "High O"}, {"name": "Louise Ovonlen", "table": "High O"}, {"name": "Brian Gibbons", "table": "High O"}, {"name": "Warwick Gibbons", "table": "High O"}, {"name": "Henderson Gibbons", "table": "High O"}, {"name": "Eric Amadusun", "table": "High O"}, {"name": "Tyra Robinson-Taitt", "table": "Table I"}, {"name": "Mithu Yogarajah", "table": "Table I"}, {"name": "Rabi Rabi", "table": "Table I"}, {"name": "Sinclair Cole", "table": "Table I"}, {"name": "Taaliba Francis", "table": "Table I"}, {"name": "Nick Farr", "table": "Table I"}, {"name": "Leonie Engel", "table": "Table I"}, {"name": "Joselin Araviri", "table": "Table I"}, {"name": "Byron Mitchell", "table": "Table I"}, {"name": "Kyuwon Park", "table": "Table M"}, {"name": "Tommy Kwan", "table": "Table M"}, {"name": "Sawsan Hamawandy", "table": "Table M"}, {"name": "Funmi Adepeju", "table": "Table M"}, {"name": "Tomisin Adepeju", "table": "Table M"}, {"name": "Kelvin Khaira", "table": "Table M"}, {"name": "Kiran Ghuman", "table": "Table M"}, {"name": "Patony Ingram", "table": "Table M"}, {"name": "Isabelle Elouga", "table": "Table N"}, {"name": "Madeleine Ngo Matip Kendeck", "table": "Table N"}, {"name": "Pamela Beau", "table": "Table N"}, {"name": "Amari", "table": "Table N"}, {"name": "Wilfran Matip", "table": "Table N"}, {"name": "Waliyaah Matip", "table": "Table N"}, {"name": "Teclaire Nantchop", "table": "Table N"}, {"name": "Emmanuel Mba", "table": "Table N"}, {"name": "Blessing Igori", "table": "Table E"}, {"name": "Aguanmase Igori", "table": "Table E"}, {"name": "Eghosa Igori", "table": "Table E"}, {"name": "Oladitan Olaseinde", "table": "Table E"}, {"name": "Elizabeth Chukwuemeka", "table": "Table E"}, {"name": "Stella Anegbeh", "table": "Table E"}, {"name": "Elizabeth Titiosho", "table": "Table E"}, {"name": "Esther Eweka", "table": "Table E"}, {"name": "Achille Toutou", "table": "Table T"}, {"name": "Sara Toutou", "table": "Table T"}, {"name": "Samuel Toutou", "table": "Table T"}, {"name": "Aaliyah Toutou", "table": "Table T"}, {"name": "Joseph Ingwat", "table": "Table T"}, {"name": "Denise Ingwat", "table": "Table T"}, {"name": "Jessica Ingwat", "table": "Table T"}, {"name": "Theresa Ingwat", "table": "Table T"}, {"name": "Hayden Ingwat", "table": "Table T"}, {"name": "Dennis Ajufo", "table": "Table O"}, {"name": "Maria Ovonlen", "table": "Table O"}, {"name": "Iyere Ovonlen", "table": "Table O"}, {"name": "Derin Ovonlen", "table": "Table O"}, {"name": "Louis Ovonlen", "table": "Table O"}, {"name": "Sophia Ovonlen", "table": "Table O"}, {"name": "Maria Okoh", "table": "Table O"}, {"name": "Emeka Okoh", "table": "Table O"}, {"name": "Jean Ovonlen", "table": "Table O"}, {"name": "Frankie Agyeman", "table": "Table K"}, {"name": "Rebekah Kiernan Walker", "table": "Table K"}, {"name": "Brendan Kiernan", "table": "Table K"}, {"name": "Savanna Robinson-Taitt", "table": "Table K"}, {"name": "Sunday Fatubarin", "table": "Table K"}, {"name": "Olusegun Fatubarin", "table": "Table K"}, {"name": "Andrea Auber", "table": "Table K"}, {"name": "Abigail Banya", "table": "Table K"}, {"name": "Maria Ebtissam", "table": "Table L"}, {"name": "Aquila Haq", "table": "Table L"}, {"name": "Rilwan Sadiq", "table": "Table L"}, {"name": "Abdul Sadiq", "table": "Table L"}, {"name": "Jhelisa Sadiq", "table": "Table L"}, {"name": "Estevez Watson", "table": "Table L"}, {"name": "Audley Thompson", "table": "Table L"}, {"name": "Leyla Mahmut", "table": "Table L"}, {"name": "Mani Ghuman", "table": "Table L"}, {"name": "Olajide Bamisaye", "table": "Table L"}, {"name": "Maxine Wright", "table": "Table J"}, {"name": "Femi Ajani", "table": "Table J"}, {"name": "Kizito Jegede", "table": "Table J"}, {"name": "Vladimir Volzhskiy", "table": "Table J"}, {"name": "Caragh Volzhskiy", "table": "Table J"}, {"name": "Aidan Savage", "table": "Table J"}, {"name": "Emma Savage", "table": "Table J"}, {"name": "Orville Wright", "table": "Table J"}, {"name": "Jade Usuanlele", "table": "Table G"}, {"name": "Joanne Bakare", "table": "Table G"}, {"name": "Victoria Usuanlele", "table": "Table G"}, {"name": "Latifah Usuanlele", "table": "Table G"}, {"name": "Sansel Dervish", "table": "Table G"}, {"name": "Sansel Plus", "table": "Table G"}, {"name": "Peure Mantey", "table": "Table G"}, {"name": "Obiaku Mantey", "table": "Table G"}, {"name": "Jude Eboji", "table": "Table G"}, {"name": "Olina Uddin", "table": "Table G"}, {"name": "William Dumbili", "table": "Table F"}, {"name": "Karl Chin", "table": "Table F"}, {"name": "Amin Haruna", "table": "Table F"}, {"name": "Chantal Morgan", "table": "Table F"}, {"name": "Simon Olaifa", "table": "Table F"}, {"name": "Cala Olaifa", "table": "Table F"}, {"name": "Marcus Dumbili", "table": "Table F"}, {"name": "Jasmine Dumblili", "table": "Table F"}, {"name": "Michael Mbema", "table": "Table F"}, {"name": "Michael Cole", "table": "Table F"}, {"name": "Stephen Ideh", "table": "Table P"}, {"name": "Hannah Owen", "table": "Table P"}, {"name": "Joel Talent", "table": "Table P"}, {"name": "Bola Lawal", "table": "Table P"}, {"name": "David Cabral", "table": "Table P"}, {"name": "James Nduka", "table": "Table P"}, {"name": "Julie Nguyen", "table": "Table P"}, {"name": "Daniel Olajide", "table": "Table P"}, {"name": "Wavenie Burland", "table": "Table P"}, {"name": "Jansu King", "table": "High K"}, {"name": "Felicity King", "table": "High K"}, {"name": "Mathias King", "table": "High K"}, {"name": "William King", "table": "High K"}];
+    <h1>Welcome to Catherine & EJ's Wedding</h1>
 
-function findTable() {
-  const input = document.getElementById('search').value.toLowerCase().trim();
-  
-  const guest = guests.find(g =>
-    g.name.toLowerCase().includes(input)
-  );
+    <p>Please enter your surname or full name</p>
 
-  const result = document.getElementById('result');
+    <input
+      type="text"
+      id="guestInput"
+      placeholder="Enter your name"
+      onkeyup="findGuest()"
+    >
 
-  if (guest) {
-    result.innerHTML = `You are seated at<br><br><span style="font-size:40px;">${guest.table}</span>`;
-  } else {
-    result.innerHTML = "Guest not found";
-  }
-}
-</script>
+    <div id="result"></div>
+
+  </div>
+
+  <script>
+
+    const guests = [
+
+      { name: "Merilyn York", table: "High O" },
+      { name: "Adrian York", table: "High O" },
+      { name: "London York", table: "High O" },
+      { name: "Vienna York", table: "High O" },
+
+      { name: "John Smith", table: "Table 2" },
+      { name: "Sarah Smith", table: "Table 2" }
+
+    ];
+
+    function findGuest() {
+
+      const input =
+        document.getElementById("guestInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const result =
+        document.getElementById("result");
+
+      if (input === "") {
+        result.innerHTML = "";
+        return;
+      }
+
+      const matches = guests.filter(g =>
+        g.name.toLowerCase().includes(input)
+      );
+
+      if (matches.length > 0) {
+
+        result.innerHTML = "";
+
+        matches.forEach(guest => {
+
+          result.innerHTML += `
+            <div style="
+              margin-top:20px;
+              padding:15px;
+              background:#fafafa;
+              border-radius:10px;
+            ">
+
+              <strong style="font-size:24px;">
+                ${guest.name}
+              </strong>
+
+              <br><br>
+
+              <span style="font-size:28px;">
+                ${guest.table}
+              </span>
+
+            </div>
+          `;
+        });
+
+      } else {
+
+        result.innerHTML = "Guest not found";
+      }
+    }
+
+  </script>
 
 </body>
 </html>
